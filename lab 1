@@ -1,18 +1,47 @@
 #include <stdio.h>
 #include <math.h>
-
+#include <stdbool.h>
+#include <string.h>
 
 int main()
-
 {
-    double a=5.1, b=1, c=-2, d;
-    float x1, x2;
-    
-    d = pow(b,2) - 4*a*c;
-    x1 = (-b + sqrt(d));
-    x2 = (-b - sqrt(d));
-    printf("d = %lf, x1 = %lf, x2 = %lf", d,x1,x2);
-
-    return 0;
+    while(true)
+    {
+        double a, b, c, d;
+        float x0, x1, x2;
+        char str[3];
+        
+        scanf("%lf", &a);
+        scanf("%lf", &b);
+        scanf("%lf", &c);
+        
+        d = pow(b,2) - 4*a*c;
+        
+        if(d > 0) {
+            x1 = (-b + sqrt(d))/(2 * a);
+            x2 = (-b - sqrt(d))/(2 * a);
+            printf("d = %lf, x1 = %lf, x2 = %lf\n", d, x1, x2);
+            printf("Вычисление закончено, хотите продолжить? (Yes/No)\n");
+            scanf("%s", str);
+            if(strcmp(str, "No") == 0)
+                return 0;
+        }
+        
+        else if(d = 0) {
+            x0 = -b/(2 * a);
+            printf("d = %lf, x0 = %lf\n", d, x0);
+            printf("Вычисление закончено, хотите продолжить? (Yes/No)\n");
+            scanf("%s", str);
+           if(strcmp(str, "No") == 0)
+                return 0;   
+        }
+        
+        else if(d < 0) {
+            printf("Нет корней!\n");
+            printf("Вычисление закончено, хотите продолжить? (Yes/No)\n");
+            scanf("%s", str);
+            if(strcmp(str, "No") == 0)
+                return 0;
+        }
+    }
 }
-/* сделать лабу2, добавить бесконечный цикл (в обе лабы) который будет спрашивать продолжить ли работу, если да - продолжить, если нет - завершить. */
