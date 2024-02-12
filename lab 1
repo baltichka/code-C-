@@ -3,6 +3,7 @@
 #include <stdbool.h>
 #include <string.h>
 
+/*бесконечный цикл с вводом данных и проверкой*/
 int main()
 {
     while(true)
