@@ -6,7 +6,8 @@
 /*бесконечный цикл с вводом данных и проверкой*/
 int main()
 {
-    while(true)
+    bool flag = true;
+    while(flag)
     {
         double a, b, c, d;
         float x0, x1, x2;
@@ -25,7 +26,9 @@ int main()
             printf("Вычисление закончено, хотите продолжить? (Yes/No)\n");
             scanf("%s", str);
             if(strcmp(str, "No") == 0)
-                return 0;
+                flag = false;
+            else if(strcmp(str, "Yes") == 0)
+                continue;
         }
         
         else if(d = 0) {
@@ -34,7 +37,9 @@ int main()
             printf("Вычисление закончено, хотите продолжить? (Yes/No)\n");
             scanf("%s", str);
            if(strcmp(str, "No") == 0)
-                return 0;   
+                 flag = false;
+            else if(strcmp(str, "Yes") == 0)
+                continue;
         }
         
         else if(d < 0) {
@@ -42,7 +47,10 @@ int main()
             printf("Вычисление закончено, хотите продолжить? (Yes/No)\n");
             scanf("%s", str);
             if(strcmp(str, "No") == 0)
-                return 0;
+                flag = false;
+            else if(strcmp(str, "Yes") == 0)
+                continue;
         }
     }
+    return 0;
 }
