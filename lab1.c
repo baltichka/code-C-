@@ -31,7 +31,7 @@ int main()
                 continue;
         }
         
-        else if(d = 0) {
+        else if(d == 0) {
             x0 = -b/(2 * a);
             printf("d = %lf, x0 = %lf\n", d, x0);
             printf("Вычисление закончено, хотите продолжить? (Yes/No)\n");
