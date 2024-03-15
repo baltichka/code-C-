@@ -4,7 +4,7 @@
 #include <locale.h>
 
 int main() {
-    setlocale(LC_ALL, "ru_RU.UTF-8");
+    setlocale(LC_ALL, "ru_RU.UTF-8"); // ру локализация
     char input[81];
 
     printf("Введите строку символов: ");
@@ -13,7 +13,7 @@ int main() {
 
     for (int i = 0; input[i] != '\0'; i++) {
         if (input[i] == 'a' || input[i] == 'b') {
-            input[i] = toupper(input[i]);
+            input[i] = toupper(input[i]); // преобразовываем в заглавные
         }
     }
 
