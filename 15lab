@@ -1,0 +1,12 @@
+#include <stdio.h>
+
+int main(void) {
+    int n;
+    scanf("%d", &n);
+
+    printf("Обычный порядок: %d %d %d\n", n / 100, (n / 10) % 10, n % 10);
+
+    printf("Обратный порядок: %d %d %d\n", n % 10, (n / 10) % 10, n / 100);
+
+    return 0;
+}
