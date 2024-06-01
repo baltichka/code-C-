@@ -1,0 +1,77 @@
+#include <stdio.h>
+#include <string.h>
+#include <locale.h>
+#include <stdlib.h>
+
+// Определение структуры human
+struct human {
+    char surname[50];
+    char name[50];
+    char otchestvo[50];
+    int birthYear;
+};
+
+int main() {
+    // Открытие файла для чтения
+    FILE *file;
+    file = fopen("input.txt", "r");
+    setlocale(LC_ALL, "ru_RU.UTF-8");
+
+    if (file == NULL) {
+        printf("Ошибка открытия файла для чтения.\n");
+        return 1;
+    }
+
+    // Подсчет количества строк в файле
+    int count = 0;
+    char buffer[160];
+    while (fgets(buffer, sizeof(buffer), file) != NULL) {
+        count++;
+    }
+    rewind(file);
+    
+    printf("Количество строк в файле input.txt: %d\n", count);
+
+    // Выделение памяти для массивов
+    struct human *inputArray = (struct human*)malloc(count * sizeof(struct human));
+    struct human *sortedArray = (struct human*)malloc(count * sizeof(struct human));
+
+    // Ввод элементов массива из файла
+    for (int i = 0; i < count; i++) {
+        fscanf(file, "%s %s %s %d", inputArray[i].surname, inputArray[i].name, inputArray[i].otchestvo, &inputArray[i].birthYear);
+    }
+    
+    // Сортировка элементов по году рождения
+    int sortedCount = 0;
+    for (int i = 0; i < count; i++) {
+        if (inputArray[i].birthYear > 1980) {
+            sortedArray[sortedCount++] = inputArray[i];
+        }
+    }
+
+    // Закрытие файла для чтения
+    fclose(file);
+
+    // Открытие файла для записи
+    file = fopen("output.txt", "w");
+
+    if (file == NULL) {
+        printf("Ошибка открытия файла для записи.\n");
+        return 1;
+    }
+
+    // Запись упорядоченного массива в другой файл
+    for (int i = 0; i < sortedCount; i++) {
+        fprintf(file, "%s %s %s %d\n", sortedArray[i].surname, sortedArray[i].name, sortedArray[i].otchestvo, sortedArray[i].birthYear);
+    }
+
+    // Закрытие файла для записи
+    fclose(file);
+    printf("Запись данных завершена, проверьте файл output.txt\n");
+
+    // Освобождение выделенной памяти
+    free(inputArray);
+    free(sortedArray);
+    
+    return 0;
+}
