@@ -1,0 +1,24 @@
+#include <stdio.h>
+
+#define MAX(a, b) ((a) > (b) ? (a) : (b))
+
+int main() {
+    int n;
+    printf("Введите количество чисел: ");
+    scanf("%d", &n);
+
+    int numbers[n];
+    printf("Введите числа через пробел: ");
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &numbers[i]);
+    }
+
+    int max = numbers[0];
+    for (int i = 1; i < n; i++) {
+        max = MAX(max, numbers[i]);
+    }
+
+    printf("Максимальное число: %d\n", max);
+
+    return 0;
+}
