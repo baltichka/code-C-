@@ -1,0 +1,65 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main() {
+    
+
+    // Замер времени работы программы
+    double start_time =  clock();
+    
+    // Задать количество случайных чисел с консоли
+    int n;
+    printf("Введите количество чисел: ");
+    scanf("%d", &n);
+    
+    // Создать файл input.txt
+    FILE *input_file = fopen("input.txt", "w");
+    for (int i = 0; i < n; i++) {
+        fprintf(input_file, "%d\n", rand());
+    }
+
+    // Отчистить массивы
+    int *numbers = NULL;
+    
+    // Закрыть файл
+    fclose(input_file);
+
+    
+    // Чтение значений 
+    input_file = fopen("input.txt", "r");
+    numbers = malloc(n * sizeof(int));
+    for (int i = 0; i < n; i++) {
+        fscanf(input_file, "%d", &numbers[i]);
+    }
+    fclose(input_file);
+    
+    
+    // сортируем типо
+     FILE *output_file = fopen("output.txt", "w");
+    for (int i = 0; i < n; i++) {
+    
+        if (numbers[i] % 5 == 0 && numbers[i] % 7 == 0) {
+            fprintf(output_file, "ПЯТЬСЕМЬ\n");
+        } else if (numbers[i] % 5 == 0) {
+            fprintf(output_file, "ПЯТЬ\n");
+        } else if (numbers[i] % 7 == 0) {
+            fprintf(output_file, "СЕМЬ\n");
+        } else {
+            fprintf(output_file, "%d\n", numbers[i]);
+        }
+    }
+    fclose(output_file);
+    
+    // Конец замера времени выполнения кода
+    double end_time = clock();
+    double search_time = (end_time - start_time) / CLOCKS_PER_SEC;;
+
+    printf("Время работы программы: %f секунд\n", search_time);
+    
+    // Освобождение памяти
+    free(numbers);
+
+
+    return 0;
+}
